@@ -5,3 +5,29 @@ predict_temp.ipynb
 vi00_vi01_transformer.yml/
 colab_paddle.ipynb/
 output/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Uploads and results
+uploads/
+results/
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

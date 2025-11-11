@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vietnamese Document OCR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📄 Vietnamese Document OCR</h1>
+            <p class="subtitle">Nhận dạng văn bản tiếng Việt từ hình ảnh</p>
+        </header>
+
+        <main>
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📤</div>
+                    <h3>Kéo thả hình ảnh vào đây</h3>
+                    <p>hoặc</p>
+                    <label for="fileInput" class="btn btn-primary">Chọn tệp</label>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                    <p class="file-info">Hỗ trợ: JPG, PNG, GIF, BMP (Tối đa 10MB)</p>
+                </div>
+
+                <div class="device-selector">
+                    <label>
+                        <input type="radio" name="device" value="cpu" checked>
+                        CPU
+                    </label>
+                    <label>
+                        <input type="radio" name="device" value="cuda">
+                        GPU (CUDA)
+                    </label>
+                    <label>
+                        <input type="radio" name="device" value="mps">
+                        Apple Silicon (MPS)
+                    </label>
+                </div>
+            </section>
+
+            <!-- Preview Section -->
+            <section class="preview-section" id="previewSection" style="display: none;">
+                <h2>Hình ảnh đã tải lên</h2>
+                <div class="image-container">
+                    <img id="previewImage" alt="Preview">
+                    <canvas id="overlayCanvas"></canvas>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="processBtn">
+                        <span id="processText">Xử lý OCR</span>
+                        <span id="processLoader" class="loader" style="display: none;"></span>
+                    </button>
+                    <button class="btn btn-secondary" id="clearBtn">Xóa</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <h2>Kết quả nhận dạng</h2>
+                <div class="results-stats">
+                    <div class="stat">
+                        <span class="stat-label">Số dòng văn bản:</span>
+                        <span class="stat-value" id="textCount">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Trạng thái:</span>
+                        <span class="stat-value success" id="statusText">Thành công</span>
+                    </div>
+                </div>
+
+                <div class="text-results">
+                    <h3>Văn bản nhận dạng:</h3>
+                    <div id="recognizedText" class="text-content"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" id="copyBtn">📋 Sao chép văn bản</button>
+                    <button class="btn btn-secondary" id="downloadBtn">💾 Tải xuống JSON</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Powered by PaddleOCR + VietOCR</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
