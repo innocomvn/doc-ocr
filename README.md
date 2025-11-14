@@ -1,10 +1,13 @@
 # Vietnamese OCR - API Service & Web Interface
 
 This project provides a complete OCR solution for Vietnamese documents with:
-- **Node.js API Service** - RESTful API for OCR processing
+- **Node.js/TypeScript API Service** - RESTful API for OCR processing
 - **Web Interface** - Modern, responsive frontend for document upload and OCR
 - **PaddleOCR** - Text detection using DB algorithm
 - **VietOCR** - Vietnamese text recognition using Transformer architecture
+- **Dual Mode** - Python wrapper (default) or pure TypeScript with ONNX Runtime
+
+> **🆕 TypeScript Version Available!** See [README_TYPESCRIPT.md](README_TYPESCRIPT.md) for the full TypeScript implementation with ONNX Runtime support.
 
 ## Features
 
@@ -71,18 +74,39 @@ npm install
 
 # Usage
 
+## Choose Your Version
+
+### JavaScript Version (Original)
+
+Simple, works out of the box with Python OCR:
+
+```bash
+npm run start:js    # Production
+npm run dev:js      # Development
+```
+
+### TypeScript Version (New)
+
+Type-safe, supports both Python wrapper and ONNX Runtime:
+
+```bash
+npm run dev         # Development with hot reload
+npm run build       # Build TypeScript
+npm start           # Run compiled version
+```
+
+See [README_TYPESCRIPT.md](README_TYPESCRIPT.md) for detailed TypeScript documentation.
+
 ## Option 1: Web Interface (Recommended)
 
 ### Start the API Server
 
 ```bash
-npm start
-```
-
-Or for development with auto-reload:
-
-```bash
+# TypeScript version (recommended)
 npm run dev
+
+# Or JavaScript version
+npm run dev:js
 ```
 
 ### Access the Web Interface

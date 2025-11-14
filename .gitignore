@@ -13,9 +13,16 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 
+# TypeScript
+dist/
+*.tsbuildinfo
+
 # Uploads and results
 uploads/
 results/
+
+# ONNX Models
+models/*.onnx
 
 # Environment variables
 .env
