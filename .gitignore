@@ -17,9 +17,11 @@ package-lock.json
 dist/
 *.tsbuildinfo
 
-# Uploads and results
-uploads/
-results/
+# Uploads and results (ignore contents but keep directories)
+uploads/*
+!uploads/.gitkeep
+results/*
+!results/.gitkeep
 
 # ONNX Models
 models/*.onnx
