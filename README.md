@@ -50,23 +50,46 @@ Text Recognition is the process of recognizing the text in an image or video. Fo
 
 - Python 3.7+ with pip
 - Node.js 14+ with npm
+- (Optional) Docker & Docker Compose
 - (Optional) CUDA for GPU acceleration
 - (Optional) Apple Silicon for MPS acceleration
 
-## Step 1: Clone Repository
+## Installation Options
+
+### Option A: Docker (Recommended for Production)
+
+```bash
+# 1. Clone repository
+git clone https://github.com/your-repo/doc-ocr.git
+cd doc-ocr
+
+# 2. Create environment config
+cp .env.example .env
+
+# 3. Run with Docker Compose
+docker-compose up -d
+
+# 4. Access at http://localhost:3000
+```
+
+See [docs/DOCKER.md](docs/DOCKER.md) for detailed Docker deployment guide.
+
+### Option B: Manual Installation
+
+#### Step 1: Clone Repository
 
 ```bash
 git clone https://github.com/your-repo/doc-ocr.git
 cd doc-ocr
 ```
 
-## Step 2: Install Python Dependencies
+#### Step 2: Install Python Dependencies
 
 ```bash
 pip install -r requirement.txt
 ```
 
-## Step 3: Install Node.js Dependencies
+#### Step 3: Install Node.js Dependencies
 
 ```bash
 npm install

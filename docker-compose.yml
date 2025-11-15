@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # OCR API Service
+  ocr-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: vietnamese-ocr-api
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - USE_ONNX=${USE_ONNX:-false}
+      - DETECTION_MODEL_PATH=${DETECTION_MODEL_PATH:-./models/detection.onnx}
+      - RECOGNITION_MODEL_PATH=${RECOGNITION_MODEL_PATH:-./models/recognition.onnx}
+    volumes:
+      # Persist uploads and results
+      - ./uploads:/app/uploads
+      - ./results:/app/results
+      # Mount models directory (if using ONNX)
+      - ./models:/app/models
+      # Mount env file
+      - ./.env:/app/.env:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - ocr-network
+
+  # Development service
+  ocr-api-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: vietnamese-ocr-api-dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - USE_ONNX=${USE_ONNX:-false}
+    volumes:
+      # Mount source code for hot reload
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./uploads:/app/uploads
+      - ./results:/app/results
+      - ./models:/app/models
+      - ./.env:/app/.env:ro
+      # Prevent node_modules from being overwritten
+      - /app/node_modules
+    command: npm run dev
+    networks:
+      - ocr-network
+    profiles:
+      - development
+
+networks:
+  ocr-network:
+    driver: bridge
+
+volumes:
+  uploads:
+  results:
+  models:

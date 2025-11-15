@@ -1,0 +1,76 @@
+# Node.js
+node_modules
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# TypeScript
+dist
+*.tsbuildinfo
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+.venv
+venv/
+ENV/
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Uploads and results (will be mounted as volumes)
+uploads/*
+results/*
+!uploads/.gitkeep
+!results/.gitkeep
+
+# Models (can be large, mount as volume instead)
+models/*.onnx
+
+# Testing
+coverage
+.nyc_output
+test-results
+
+# Documentation (not needed in image)
+*.md
+!README.md
+docs/
+
+# CI/CD
+.github
+.gitlab-ci.yml
+
+# Other
+.dockerignore
+Dockerfile
+docker-compose.yml
+*.tar
+*.zip
